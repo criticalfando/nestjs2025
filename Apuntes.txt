@@ -12,7 +12,10 @@ Es necesario deshabilitar Prettier en caso de usarlo, o mostrara errores en los 
 /* eslint-disable prettier/prettier */
 Al principio del archivo (linea 1)
 
+O cambiar el End Of Line Sequence a LF, en la barra inferior de visual code.
+
 Importamos el decorador "Param" para extraer parámetros de la ruta (URL) en las peticiones HTTP. 
 Por ejemplo, en la ruta `/saludo/personal/:name`, el valor de `:name` se obtiene usando `@Param('name')`.
 
 Para nombrar el proyecto es necesario cambiar el nombre en "@Controller(NOMBRE)"
+
