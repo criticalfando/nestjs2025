@@ -1,3 +1,6 @@
+Se configura el entorno, instalando NESTJS con "npm install -g @nestjs/cli",
+e instalamos Nest File Generator en Visual Code.
+
 Para crear un proyecto de nodejs usamos:
 
 nest new project-name
