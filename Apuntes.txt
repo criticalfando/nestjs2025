@@ -17,11 +17,14 @@ Archivo tsconfig.json:
 
 Archivo eslint.config.mjs:
     Eliminar linea 13 (Prettier)
+    Eliminar linea 12 tambien
 
 /* eslint-disable prettier/prettier */
 Al principio del archivo (linea 1)
 
 O cambiar el End Of Line Sequence a LF, en la barra inferior de visual code.
+
+
 
 Importamos el decorador "Param" para extraer parámetros de la ruta (URL) en las peticiones HTTP. 
 Por ejemplo, en la ruta `/saludo/personal/:name`, el valor de `:name` se obtiene usando `@Param('name')`.
@@ -29,3 +32,10 @@ Por ejemplo, en la ruta `/saludo/personal/:name`, el valor de `:name` se obtiene
 Para nombrar la primera llamada a la API es necesario cambiar el nombre en "@Controller(NOMBRE)",
 ahi usaremos el http://localhost:3000/NOMBRE/GETVARIABLE
 
+///////
+
+Instalar el http.service con:
+
+npm install @nestjs/axios axios
+
+await hace que no tengas que pedirle un valor instantaneo
