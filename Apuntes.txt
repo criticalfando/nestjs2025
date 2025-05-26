@@ -39,3 +39,7 @@ Instalar el http.service con:
 npm install @nestjs/axios axios
 
 await hace que no tengas que pedirle un valor instantaneo
+
+// Instalar orm para la conexion a base de datos 
+
+npm install @nestjs/typeorm@11 typeorm@0.3 mysql2
