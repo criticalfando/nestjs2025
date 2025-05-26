@@ -5,8 +5,7 @@ import { DeleteResult, Repository } from 'typeorm';
 
 @Injectable()
 export class ContactosService {
-constructor(@InjectRepository(Contacto) private contactosRepository:Repository<Contacto>){
-  }
+constructor(@InjectRepository(Contacto) private contactosRepository:Repository<Contacto>){}
 
   //No se permiten contactos con el mismo email. Si se intenta dar de alta
   // Un contacto con email existente, no se dara de alta, y se devolvera false.
