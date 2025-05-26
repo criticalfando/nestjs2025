@@ -43,3 +43,55 @@ await hace que no tengas que pedirle un valor instantaneo
 // Instalar orm para la conexion a base de datos 
 
 npm install @nestjs/typeorm@11 typeorm@0.3 mysql2
+
+// typeorm
+
+En typeorm usamos las entidades para hacer la call a las tablas, haciendo json de las filas
+
+{
+    nombre:"nombre"
+    email:"email"
+    numero:numero
+}
+
+Creamos un modelo default, y para rellenarlo, se coloca: 
+
+La entity es, la asignacion al nombre de la tabla:
+@Entity("nombre tabla")
+
+Para ir asignando columnas son:
+
+
+@PrimaryGeneratedColumn("primera columna")
+
+Los auto incrementals son con @PrimaryGeneratedColumn
+
+Las tablas que no son autoincrementales serian @PrimaryColumn
+
+Cada columna que no sea la primarykey va con @Column()
+
+A las columnas que pueden estar vacias se les añade @Column({nullable:true})
+
+Para referenciar columnas con un nombre diferente se usa: 
+
+@Column("nombre columna original")
+name:string
+
+
+Esto seria la entidad de conexion a la tabla, con las propiedades y valores.
+
+// app.enableCors() en main.ts
+
+Permite la llamada de fuentes desconocidas al backend
+
+Modelo por cada tabla de la base de datos
+Servicio por cada modelo de la base de datos para tratar con esa tabla
+
+Metodos para el Repository:
+
+save(entidad):Promise<Entidad>. Guarda o actualiza la entidad en la base de datos
+find():Promise<Entidad[]>. Devuelve todas las entidades
+findBy(where):Promise<Entidad[]>. Recupera todas lasentidades en función de una condición que se establece através de un JSON:
+findOneBy(where):Promise<Entidad>. Igual que el anterior, pero devolviendo solo una entidad
+remove(Entidad):Promise<Entidad>. Elimina la entidad
+delete(where)Promise<DeleteResult>. Elimina las entidades que cumplen la condición

@@ -30,9 +30,9 @@ constructor(@InjectRepository(Contacto) private contactosRepository:Repository<C
     return this.contactosRepository.find();
   }
 
-   async deleteByEmail(email:string):Promise<boolean>{
-    //devuelve un boolean, indicando si lo ah eliminado o no
-    const result:DeleteResult=await this.contactosRepository.delete({email:email});
+   async deleteByEmail(e:string):Promise<boolean>{
+    //devuelve un boolean, indicando si lo ha eliminado o no
+    const result:DeleteResult=await this.contactosRepository.delete({email:e});
     return result.affected>0;
   } 
 }
