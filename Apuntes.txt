@@ -95,3 +95,5 @@ findBy(where):Promise<Entidad[]>. Recupera todas lasentidades en función de una
 findOneBy(where):Promise<Entidad>. Igual que el anterior, pero devolviendo solo una entidad
 remove(Entidad):Promise<Entidad>. Elimina la entidad
 delete(where)Promise<DeleteResult>. Elimina las entidades que cumplen la condición
+
+
