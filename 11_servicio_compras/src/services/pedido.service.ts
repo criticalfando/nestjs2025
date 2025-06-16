@@ -9,7 +9,7 @@ export class PedidoService {
 
 
   async buscarProductos(min:number,max:number):Promise<ProductoDto[]>{
-    const response:any= await axios.get('${this.urlGlobal}/tienda/productos');
+    const response:any= await axios.get(`${this.urlGlobal}/tienda/productos`);
     const jsonFiltrado:ProductoDto[]=response.data
     .filter(p=>p.precio>=min&&p.precio<=max);
     const productos:ProductoDto[]=jsonFiltrado
@@ -24,14 +24,14 @@ export class PedidoService {
       if(p.stock<=10){
         disponibilidad="alta"
       }
-      return new ProductoDto(p.nombre,p.precio,disponibilidad)
+      return new ProductoDto(p.producto,p.precioUnitario,disponibilidad)
     });
     return productos;
   }
 
   async altaPedido(pedido:PedidoDto):Promise<boolean>{
     try{
-      await axios.post('${this.urlGlobal}/altaPedido')
+      await axios.post(`${this.urlGlobal}/altaPedido`)
       return true
     }catch(err){
       return false

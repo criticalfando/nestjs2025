@@ -97,3 +97,59 @@ remove(Entidad):Promise<Entidad>. Elimina la entidad
 delete(where)Promise<DeleteResult>. Elimina las entidades que cumplen la condición
 
 
+// Securizacion con JWT 
+
+ JSON Web Token
+
+ Mecanismo de identificacion basada en un token.
+
+ Consta de tres partes separadas, header, payload, signature.
+
+ 1. El cliente se autentica
+ 2. Si existe el usuario el servidor genera el token y lo envia.
+ 3. Llamadas a recursos, enviando el token.
+ 4. Servicio lee el token, identifica y autoriza a ese recurso.
+
+ npm install @nestjs/jwt @nestjs/passport passport passport-jwt
+ npm install -D @types/passport-jwt
+
+ Se genera la strategy, y el guard, con el NestJS File Generator crear un JWT Guard.
+
+ Llamando al Guard, JWTAuth.
+
+ Crear una archivo para los roles. Con el NestJS File Generator, generar un Guard.
+
+@Injectable()
+export class RolesGuard implements CanActivate {
+constructor(private reflector: Reflector) {}
+  canActivate(
+    context: ExecutionContext,
+  ): boolean | Promise<boolean> | Observable<boolean> {
+      
+      const requiredRoles = this.reflector.getAllAndOverride<string[]>(ROLES_KEY, [
+      context.getHandler(),
+      context.getClass(),
+      ]);
+      if (!requiredRoles || requiredRoles.length === 0) {
+      return true; // No se requiere rol específico
+      }
+      const { user } = context.switchToHttp().getRequest();
+      return requiredRoles.includes(user.role);
+  }
+}
+
+Debemos generar un decorator con el NestJS File Generator. Con lo siguiente, para las KEY_ROLE:
+
+export const ROLES_KEY = 'roles';
+export const Roles = (...roles: string[]) => SetMetadata(ROLES_KEY, roles);
+
+Crear un servicio para los usuarios:
+
+private readonly users = [
+        { id: 1, username: 'admin', password: 'admin', role: 'admin' },
+        { id: 2, username: 'usuario', password: 'usuario', role: 'user' }
+];
+
+async findByUsername(username:string):Promise<any>{
+  return this.users.find(u=>u.username=username)
+}
